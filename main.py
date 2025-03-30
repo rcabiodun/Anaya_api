@@ -5,6 +5,13 @@ from config.database import  engine
 from authentication.models import Base
 from config.exceptions import DatabaseError, DuplicateEntryError, DatabaseConnectionError
 from fastapi.responses import JSONResponse
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+port=os.getenv("PORT",8000)
+
 app = FastAPI(
     title="Anaya API",
     # description="AN API description",
@@ -56,4 +63,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app,port=8000)
+    uvicorn.run(app,port=port)
